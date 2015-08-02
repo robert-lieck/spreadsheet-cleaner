@@ -13,4 +13,4 @@ You will need a working [IPython Notebook](http://ipython.org/notebook.html) ins
 
 You should now be able to start IPython Notebook via ```ipython notebook```
 
-For excel support you additionally need [openpyx](http://openpyxl.readthedocs.org/en/latest/index.html), which you can install via ```sudo pip install openpyxl```
+For excel support you additionally need [openpyxl](http://openpyxl.readthedocs.org/en/latest/index.html), which you can install via ```sudo pip install openpyxl```
