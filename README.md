@@ -1,6 +1,6 @@
 # Spreadsheet Cleaner
 
-The purpose of this script is to delete duplicate rows from a spreadsheet file. It should be able to deal with CSV and Excel files. Note that ipython notebooks are **not** python scripts (see [Usage](Usage) below) even though the code parts are mostly pure python.
+The purpose of this script is to delete duplicate rows from a spreadsheet file. It should be able to deal with CSV and Excel files. Note that ipython notebooks are **not** python scripts (see *Usage* below) even though the code parts are mostly pure python.
 
 ## Installation
 You will need a working [IPython Notebook](http://ipython.org/notebook.html) installation.
