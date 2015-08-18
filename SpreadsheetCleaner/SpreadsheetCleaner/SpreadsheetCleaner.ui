@@ -1,0 +1,728 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SpreadsheetCleaner</class>
+ <widget class="QMainWindow" name="SpreadsheetCleaner">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>819</width>
+    <height>643</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>SpreadsheetCleaner</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="0" column="0">
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0">
+       <widget class="QTabWidget" name="tabWidget">
+        <property name="currentIndex">
+         <number>0</number>
+        </property>
+        <widget class="QWidget" name="data">
+         <attribute name="title">
+          <string>Data</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_4">
+          <item row="0" column="0">
+           <layout class="QGridLayout" name="gridLayout_3">
+            <item row="1" column="1">
+             <widget class="QLineEdit" name="_wOpenFileName"/>
+            </item>
+            <item row="0" column="0" colspan="3">
+             <widget class="QTableView" name="_wTable"/>
+            </item>
+            <item row="1" column="0">
+             <widget class="QPushButton" name="_wOpenFile">
+              <property name="text">
+               <string>Open</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="2">
+             <widget class="QPushButton" name="_wBrowseOpenFile">
+              <property name="text">
+               <string>Browse...</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QPushButton" name="_wSaveFile">
+              <property name="text">
+               <string>Save</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QLineEdit" name="_wSaveFileName"/>
+            </item>
+            <item row="2" column="2">
+             <widget class="QPushButton" name="_wBrowseSaveFile">
+              <property name="text">
+               <string>Browse...</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="settings">
+         <attribute name="title">
+          <string>Settings</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_6">
+          <item row="0" column="0">
+           <layout class="QGridLayout" name="gridLayout_5">
+            <item row="0" column="0">
+             <widget class="QGroupBox" name="_wFieldSeparatorGroup">
+              <property name="title">
+               <string>Field Separator</string>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_7">
+               <item row="0" column="0">
+                <widget class="QGroupBox" name="_wFieldSeparatorInputOutputGroup">
+                 <property name="title">
+                  <string>Input/Output</string>
+                 </property>
+                 <layout class="QHBoxLayout" name="horizontalLayout_2">
+                  <item>
+                   <widget class="QRadioButton" name="_wFieldSeparatorComma">
+                    <property name="text">
+                     <string>comma (,)</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QRadioButton" name="_wFieldSeparatorSemicolon">
+                    <property name="text">
+                     <string>semicolon (;)</string>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QRadioButton" name="_wFieldSeparatorOther">
+                    <property name="text">
+                     <string>other</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="_wFieldSeparatorOtherValue"/>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QGroupBox" name="_wFieldSeparatorOutputGroup">
+                 <property name="title">
+                  <string>Output</string>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
+                 </property>
+                 <property name="checked">
+                  <bool>false</bool>
+                 </property>
+                 <layout class="QHBoxLayout" name="horizontalLayout_3">
+                  <item>
+                   <widget class="QRadioButton" name="_wFieldSeparatorOutputComma">
+                    <property name="text">
+                     <string>comma (,)</string>
+                    </property>
+                    <property name="checked">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QRadioButton" name="_wFieldSeparatorOutputSemicolon">
+                    <property name="text">
+                     <string>semicolon (;)</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QRadioButton" name="_wFieldSeparatorOutputOther">
+                    <property name="text">
+                     <string>other</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLineEdit" name="_wFieldSeparatorOutputOtherValue"/>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="1" column="0">
+           <widget class="QGroupBox" name="_wFieldQuotingGroup">
+            <property name="title">
+             <string>Field Quoting</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_8">
+             <item row="0" column="0">
+              <widget class="QGroupBox" name="_wFieldQuotingInputOutputGroup">
+               <property name="title">
+                <string>Input/Output</string>
+               </property>
+               <layout class="QHBoxLayout" name="horizontalLayout">
+                <item>
+                 <widget class="QRadioButton" name="_wFieldQuotingDoubleQuotes">
+                  <property name="text">
+                   <string>double quotes (&quot;...&quot;)</string>
+                  </property>
+                  <property name="checked">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QRadioButton" name="_wFieldQuotingSingleQuotes">
+                  <property name="text">
+                   <string>single quotes ('...')</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QRadioButton" name="_wFieldQuotingOther">
+                  <property name="text">
+                   <string>other</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="_wFieldQuotingOtherValue"/>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QGroupBox" name="_wFieldQuotingOutputGroup">
+               <property name="title">
+                <string>Output</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="checked">
+                <bool>false</bool>
+               </property>
+               <layout class="QHBoxLayout" name="horizontalLayout_4">
+                <item>
+                 <widget class="QRadioButton" name="_wFieldQuotingOutputDoubleQuotes">
+                  <property name="text">
+                   <string>double quotes (&quot;...&quot;)</string>
+                  </property>
+                  <property name="checked">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QRadioButton" name="_wFieldQuotingOutputSingleQuotes">
+                  <property name="text">
+                   <string>single quotes ('...')</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QRadioButton" name="_wFieldQuotingOutputOther">
+                  <property name="text">
+                   <string>other</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="_wFieldQuotingOutputOtherValue"/>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <spacer name="verticalSpacer">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>819</width>
+     <height>19</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>_wOpenFile</sender>
+   <signal>clicked()</signal>
+   <receiver>SpreadsheetCleaner</receiver>
+   <slot>open_file()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>90</x>
+     <y>570</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>645</x>
+     <y>336</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>_wBrowseOpenFile</sender>
+   <signal>clicked()</signal>
+   <receiver>SpreadsheetCleaner</receiver>
+   <slot>browse_open_file()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>796</x>
+     <y>570</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>646</x>
+     <y>295</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>_wSaveFile</sender>
+   <signal>clicked()</signal>
+   <receiver>SpreadsheetCleaner</receiver>
+   <slot>save_file()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>101</x>
+     <y>598</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>648</x>
+     <y>367</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>_wBrowseSaveFile</sender>
+   <signal>clicked()</signal>
+   <receiver>SpreadsheetCleaner</receiver>
+   <slot>browse_save_file()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>796</x>
+     <y>598</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>648</x>
+     <y>401</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>_wFieldSeparatorComma</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>SpreadsheetCleaner</receiver>
+   <slot>csv_encoding_changed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>97</x>
+     <y>147</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>665</x>
+     <y>82</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>_wFieldSeparatorSemicolon</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>SpreadsheetCleaner</receiver>
+   <slot>csv_encoding_changed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>186</x>
+     <y>151</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>667</x>
+     <y>119</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>_wFieldSeparatorOther</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>SpreadsheetCleaner</receiver>
+   <slot>csv_encoding_changed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>278</x>
+     <y>152</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>667</x>
+     <y>153</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>_wFieldSeparatorOtherValue</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>SpreadsheetCleaner</receiver>
+   <slot>csv_encoding_changed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>392</x>
+     <y>144</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>667</x>
+     <y>182</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>_wFieldSeparatorOutputGroup</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>SpreadsheetCleaner</receiver>
+   <slot>csv_encoding_changed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>66</x>
+     <y>186</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>667</x>
+     <y>232</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>_wFieldSeparatorOutputComma</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>SpreadsheetCleaner</receiver>
+   <slot>csv_encoding_changed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>71</x>
+     <y>220</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>815</x>
+     <y>191</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>_wFieldSeparatorOutputSemicolon</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>SpreadsheetCleaner</receiver>
+   <slot>csv_encoding_changed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>160</x>
+     <y>214</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>670</x>
+     <y>265</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>_wFieldSeparatorOutputOther</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>SpreadsheetCleaner</receiver>
+   <slot>csv_encoding_changed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>282</x>
+     <y>218</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>666</x>
+     <y>54</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>_wFieldSeparatorOutputOtherValue</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>SpreadsheetCleaner</receiver>
+   <slot>csv_encoding_changed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>347</x>
+     <y>218</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>667</x>
+     <y>108</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>_wFieldQuotingDoubleQuotes</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>SpreadsheetCleaner</receiver>
+   <slot>csv_encoding_changed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>133</x>
+     <y>340</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>665</x>
+     <y>82</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>_wFieldQuotingSingleQuotes</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>SpreadsheetCleaner</receiver>
+   <slot>csv_encoding_changed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>344</x>
+     <y>340</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>667</x>
+     <y>119</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>_wFieldQuotingOther</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>SpreadsheetCleaner</receiver>
+   <slot>csv_encoding_changed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>409</x>
+     <y>340</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>667</x>
+     <y>153</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>_wFieldQuotingOutputGroup</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>SpreadsheetCleaner</receiver>
+   <slot>csv_encoding_changed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>90</x>
+     <y>422</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>667</x>
+     <y>232</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>_wFieldQuotingOutputDoubleQuotes</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>SpreadsheetCleaner</receiver>
+   <slot>csv_encoding_changed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>107</x>
+     <y>409</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>665</x>
+     <y>210</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>_wFieldQuotingOutputSingleQuotes</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>SpreadsheetCleaner</receiver>
+   <slot>csv_encoding_changed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>344</x>
+     <y>409</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>670</x>
+     <y>265</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>_wFieldQuotingOutputOther</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>SpreadsheetCleaner</receiver>
+   <slot>csv_encoding_changed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>409</x>
+     <y>409</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>666</x>
+     <y>54</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>_wFieldQuotingOutputOtherValue</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>SpreadsheetCleaner</receiver>
+   <slot>csv_encoding_changed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>625</x>
+     <y>410</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>667</x>
+     <y>108</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>_wFieldQuotingOtherValue</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>SpreadsheetCleaner</receiver>
+   <slot>csv_encoding_changed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>519</x>
+     <y>329</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>815</x>
+     <y>288</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>_wFieldSeparatorOtherValue</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>SpreadsheetCleaner</receiver>
+   <slot>make_field_separator_other()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>496</x>
+     <y>147</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>815</x>
+     <y>132</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>_wFieldSeparatorOutputOtherValue</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>SpreadsheetCleaner</receiver>
+   <slot>make_field_separator_output_other()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>615</x>
+     <y>223</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>814</x>
+     <y>221</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>_wFieldQuotingOtherValue</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>SpreadsheetCleaner</receiver>
+   <slot>make_field_quoting_other()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>723</x>
+     <y>329</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>815</x>
+     <y>342</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>_wFieldQuotingOutputOtherValue</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>SpreadsheetCleaner</receiver>
+   <slot>make_field_quoting_output_other()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>671</x>
+     <y>395</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>815</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>open_file()</slot>
+  <slot>browse_open_file()</slot>
+  <slot>save_file()</slot>
+  <slot>browse_save_file()</slot>
+  <slot>csv_encoding_changed()</slot>
+  <slot>make_field_separator_other()</slot>
+  <slot>make_field_separator_output_other()</slot>
+  <slot>make_field_quoting_other()</slot>
+  <slot>make_field_quoting_output_other()</slot>
+ </slots>
+</ui>

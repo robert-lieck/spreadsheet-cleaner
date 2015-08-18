@@ -1,0 +1,8 @@
+## qtcreator files
+*.pro.user
+
+## ipython notebook
+**/.ipynb_checkpoints/**
+
+## build
+**/build*/**
