@@ -233,7 +233,7 @@ void SpreadsheetModel::save(QString file_name) {
         for(std::vector<QString> & row : sheet_data) {
             QString line = "";
             for(QString field : row) {
-                if(field.contains(output_quote_char)) {
+                if(field.contains(output_quote_char) || field.contains(output_separator)) {
                     field.replace(output_quote_char,QString("%1%1").arg(output_quote_char));
                     field = output_quote_char + field + output_quote_char;
                 }
