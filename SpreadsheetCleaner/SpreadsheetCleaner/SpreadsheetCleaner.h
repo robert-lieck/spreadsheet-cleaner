@@ -34,6 +34,9 @@ private slots:
     void make_field_quoting_output_other();
     void contextMenu(QPoint);
     void toggle_column();
+    void ignore_case_toggled(bool);
+    void simplify_whitespace_toggled(bool);
+    void info(QString info_text);
 };
 
 #endif // SPREADSHEETCLEANER_H

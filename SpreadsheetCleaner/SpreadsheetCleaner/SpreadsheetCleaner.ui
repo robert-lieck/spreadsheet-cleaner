@@ -29,40 +29,50 @@
          <layout class="QGridLayout" name="gridLayout_4">
           <item row="0" column="0">
            <layout class="QGridLayout" name="gridLayout_3">
-            <item row="1" column="1">
+            <item row="2" column="1">
              <widget class="QLineEdit" name="_wOpenFileName"/>
             </item>
             <item row="0" column="0" colspan="3">
              <widget class="QTableView" name="_wTable"/>
             </item>
-            <item row="1" column="0">
+            <item row="2" column="0">
              <widget class="QPushButton" name="_wOpenFile">
               <property name="text">
                <string>Open</string>
               </property>
              </widget>
             </item>
-            <item row="1" column="2">
+            <item row="2" column="2">
              <widget class="QPushButton" name="_wBrowseOpenFile">
               <property name="text">
                <string>Browse...</string>
               </property>
              </widget>
             </item>
-            <item row="2" column="0">
+            <item row="3" column="0">
              <widget class="QPushButton" name="_wSaveFile">
               <property name="text">
                <string>Save</string>
               </property>
              </widget>
             </item>
-            <item row="2" column="1">
-             <widget class="QLineEdit" name="_wSaveFileName"/>
-            </item>
-            <item row="2" column="2">
+            <item row="3" column="2">
              <widget class="QPushButton" name="_wBrowseSaveFile">
               <property name="text">
                <string>Browse...</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="1">
+             <widget class="QLineEdit" name="_wSaveFileName"/>
+            </item>
+            <item row="1" column="0" colspan="3">
+             <widget class="QLabel" name="_wInfo">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
               </property>
              </widget>
             </item>
@@ -76,95 +86,117 @@
          </attribute>
          <layout class="QGridLayout" name="gridLayout_6">
           <item row="0" column="0">
-           <layout class="QGridLayout" name="gridLayout_5">
-            <item row="0" column="0">
-             <widget class="QGroupBox" name="_wFieldSeparatorGroup">
-              <property name="title">
-               <string>Field Separator</string>
-              </property>
-              <layout class="QGridLayout" name="gridLayout_7">
-               <item row="0" column="0">
-                <widget class="QGroupBox" name="_wFieldSeparatorInputOutputGroup">
-                 <property name="title">
-                  <string>Input/Output</string>
-                 </property>
-                 <layout class="QHBoxLayout" name="horizontalLayout_2">
-                  <item>
-                   <widget class="QRadioButton" name="_wFieldSeparatorComma">
-                    <property name="text">
-                     <string>comma (,)</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QRadioButton" name="_wFieldSeparatorSemicolon">
-                    <property name="text">
-                     <string>semicolon (;)</string>
-                    </property>
-                    <property name="checked">
-                     <bool>true</bool>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QRadioButton" name="_wFieldSeparatorOther">
-                    <property name="text">
-                     <string>other</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QLineEdit" name="_wFieldSeparatorOtherValue"/>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-               <item row="2" column="0">
-                <widget class="QGroupBox" name="_wFieldSeparatorOutputGroup">
-                 <property name="title">
-                  <string>Output</string>
-                 </property>
-                 <property name="checkable">
-                  <bool>true</bool>
-                 </property>
-                 <property name="checked">
-                  <bool>false</bool>
-                 </property>
-                 <layout class="QHBoxLayout" name="horizontalLayout_3">
-                  <item>
-                   <widget class="QRadioButton" name="_wFieldSeparatorOutputComma">
-                    <property name="text">
-                     <string>comma (,)</string>
-                    </property>
-                    <property name="checked">
-                     <bool>true</bool>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QRadioButton" name="_wFieldSeparatorOutputSemicolon">
-                    <property name="text">
-                     <string>semicolon (;)</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QRadioButton" name="_wFieldSeparatorOutputOther">
-                    <property name="text">
-                     <string>other</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QLineEdit" name="_wFieldSeparatorOutputOtherValue"/>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-            </item>
-           </layout>
+           <widget class="QGroupBox" name="_wFieldSeparatorGroup">
+            <property name="title">
+             <string>Field Separator</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_7">
+             <item row="0" column="0">
+              <widget class="QGroupBox" name="_wFieldSeparatorInputOutputGroup">
+               <property name="title">
+                <string>Input/Output</string>
+               </property>
+               <layout class="QHBoxLayout" name="horizontalLayout_2">
+                <item>
+                 <widget class="QRadioButton" name="_wFieldSeparatorComma">
+                  <property name="text">
+                   <string>comma (,)</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QRadioButton" name="_wFieldSeparatorSemicolon">
+                  <property name="text">
+                   <string>semicolon (;)</string>
+                  </property>
+                  <property name="checked">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QRadioButton" name="_wFieldSeparatorOther">
+                  <property name="text">
+                   <string>other</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="_wFieldSeparatorOtherValue"/>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_2">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QGroupBox" name="_wFieldSeparatorOutputGroup">
+               <property name="title">
+                <string>Output</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="checked">
+                <bool>false</bool>
+               </property>
+               <layout class="QHBoxLayout" name="horizontalLayout_3">
+                <item>
+                 <widget class="QRadioButton" name="_wFieldSeparatorOutputComma">
+                  <property name="text">
+                   <string>comma (,)</string>
+                  </property>
+                  <property name="checked">
+                   <bool>true</bool>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QRadioButton" name="_wFieldSeparatorOutputSemicolon">
+                  <property name="text">
+                   <string>semicolon (;)</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QRadioButton" name="_wFieldSeparatorOutputOther">
+                  <property name="text">
+                   <string>other</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLineEdit" name="_wFieldSeparatorOutputOtherValue"/>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_3">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </widget>
           </item>
           <item row="1" column="0">
            <widget class="QGroupBox" name="_wFieldQuotingGroup">
@@ -204,6 +236,19 @@
                 </item>
                 <item>
                  <widget class="QLineEdit" name="_wFieldQuotingOtherValue"/>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_4">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
                 </item>
                </layout>
               </widget>
@@ -247,13 +292,26 @@
                 <item>
                  <widget class="QLineEdit" name="_wFieldQuotingOutputOtherValue"/>
                 </item>
+                <item>
+                 <spacer name="horizontalSpacer_5">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
                </layout>
               </widget>
              </item>
             </layout>
            </widget>
           </item>
-          <item row="2" column="0">
+          <item row="3" column="0">
            <spacer name="verticalSpacer">
             <property name="orientation">
              <enum>Qt::Vertical</enum>
@@ -265,6 +323,42 @@
              </size>
             </property>
            </spacer>
+          </item>
+          <item row="2" column="0">
+           <widget class="QGroupBox" name="groupBox">
+            <property name="title">
+             <string>Comparison</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_5">
+             <item row="0" column="0">
+              <widget class="QCheckBox" name="_wIgnoreCase">
+               <property name="text">
+                <string>ignore case (aBc=Abc)</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QCheckBox" name="_wSimplifyWhitespace">
+               <property name="text">
+                <string>simplify whitespace (&quot; x   y &quot;=&quot;x y&quot;)</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="2">
+              <spacer name="horizontalSpacer">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </widget>
           </item>
          </layout>
         </widget>
@@ -362,6 +456,182 @@
    </hints>
   </connection>
   <connection>
+   <sender>_wFieldQuotingDoubleQuotes</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>SpreadsheetCleaner</receiver>
+   <slot>csv_encoding_changed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>169</x>
+     <y>338</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>665</x>
+     <y>82</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>_wFieldQuotingSingleQuotes</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>SpreadsheetCleaner</receiver>
+   <slot>csv_encoding_changed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>344</x>
+     <y>338</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>667</x>
+     <y>119</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>_wFieldQuotingOther</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>SpreadsheetCleaner</receiver>
+   <slot>csv_encoding_changed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>409</x>
+     <y>338</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>667</x>
+     <y>153</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>_wFieldQuotingOutputGroup</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>SpreadsheetCleaner</receiver>
+   <slot>csv_encoding_changed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>114</x>
+     <y>420</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>667</x>
+     <y>232</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>_wFieldQuotingOutputDoubleQuotes</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>SpreadsheetCleaner</receiver>
+   <slot>csv_encoding_changed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>143</x>
+     <y>407</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>665</x>
+     <y>210</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>_wFieldQuotingOutputSingleQuotes</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>SpreadsheetCleaner</receiver>
+   <slot>csv_encoding_changed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>344</x>
+     <y>407</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>670</x>
+     <y>265</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>_wFieldQuotingOutputOther</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>SpreadsheetCleaner</receiver>
+   <slot>csv_encoding_changed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>409</x>
+     <y>407</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>666</x>
+     <y>54</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>_wFieldQuotingOutputOtherValue</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>SpreadsheetCleaner</receiver>
+   <slot>csv_encoding_changed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>591</x>
+     <y>408</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>667</x>
+     <y>108</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>_wFieldQuotingOtherValue</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>SpreadsheetCleaner</receiver>
+   <slot>csv_encoding_changed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>519</x>
+     <y>329</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>815</x>
+     <y>288</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>_wFieldQuotingOtherValue</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>SpreadsheetCleaner</receiver>
+   <slot>make_field_quoting_other()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>591</x>
+     <y>339</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>815</x>
+     <y>342</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>_wFieldQuotingOutputOtherValue</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>SpreadsheetCleaner</receiver>
+   <slot>make_field_quoting_output_other()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>591</x>
+     <y>408</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>815</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
    <sender>_wFieldSeparatorComma</sender>
    <signal>toggled(bool)</signal>
    <receiver>SpreadsheetCleaner</receiver>
@@ -378,22 +648,6 @@
    </hints>
   </connection>
   <connection>
-   <sender>_wFieldSeparatorSemicolon</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>SpreadsheetCleaner</receiver>
-   <slot>csv_encoding_changed()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>186</x>
-     <y>151</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>667</x>
-     <y>119</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>_wFieldSeparatorOther</sender>
    <signal>toggled(bool)</signal>
    <receiver>SpreadsheetCleaner</receiver>
@@ -406,6 +660,22 @@
     <hint type="destinationlabel">
      <x>667</x>
      <y>153</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>_wFieldSeparatorSemicolon</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>SpreadsheetCleaner</receiver>
+   <slot>csv_encoding_changed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>186</x>
+     <y>151</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>667</x>
+     <y>119</y>
     </hint>
    </hints>
   </connection>
@@ -506,146 +776,18 @@
    </hints>
   </connection>
   <connection>
-   <sender>_wFieldQuotingDoubleQuotes</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>SpreadsheetCleaner</receiver>
-   <slot>csv_encoding_changed()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>133</x>
-     <y>340</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>665</x>
-     <y>82</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>_wFieldQuotingSingleQuotes</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>SpreadsheetCleaner</receiver>
-   <slot>csv_encoding_changed()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>344</x>
-     <y>340</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>667</x>
-     <y>119</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>_wFieldQuotingOther</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>SpreadsheetCleaner</receiver>
-   <slot>csv_encoding_changed()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>409</x>
-     <y>340</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>667</x>
-     <y>153</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>_wFieldQuotingOutputGroup</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>SpreadsheetCleaner</receiver>
-   <slot>csv_encoding_changed()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>90</x>
-     <y>422</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>667</x>
-     <y>232</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>_wFieldQuotingOutputDoubleQuotes</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>SpreadsheetCleaner</receiver>
-   <slot>csv_encoding_changed()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>107</x>
-     <y>409</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>665</x>
-     <y>210</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>_wFieldQuotingOutputSingleQuotes</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>SpreadsheetCleaner</receiver>
-   <slot>csv_encoding_changed()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>344</x>
-     <y>409</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>670</x>
-     <y>265</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>_wFieldQuotingOutputOther</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>SpreadsheetCleaner</receiver>
-   <slot>csv_encoding_changed()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>409</x>
-     <y>409</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>666</x>
-     <y>54</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>_wFieldQuotingOutputOtherValue</sender>
+   <sender>_wFieldSeparatorOutputOtherValue</sender>
    <signal>textChanged(QString)</signal>
    <receiver>SpreadsheetCleaner</receiver>
-   <slot>csv_encoding_changed()</slot>
+   <slot>make_field_separator_output_other()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>625</x>
-     <y>410</y>
+     <x>541</x>
+     <y>229</y>
     </hint>
     <hint type="destinationlabel">
-     <x>667</x>
-     <y>108</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>_wFieldQuotingOtherValue</sender>
-   <signal>textChanged(QString)</signal>
-   <receiver>SpreadsheetCleaner</receiver>
-   <slot>csv_encoding_changed()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>519</x>
-     <y>329</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>815</x>
-     <y>288</y>
+     <x>814</x>
+     <y>221</y>
     </hint>
    </hints>
   </connection>
@@ -666,50 +808,34 @@
    </hints>
   </connection>
   <connection>
-   <sender>_wFieldSeparatorOutputOtherValue</sender>
-   <signal>textChanged(QString)</signal>
+   <sender>_wIgnoreCase</sender>
+   <signal>toggled(bool)</signal>
    <receiver>SpreadsheetCleaner</receiver>
-   <slot>make_field_separator_output_other()</slot>
+   <slot>ignore_case_toggled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>615</x>
-     <y>223</y>
+     <x>114</x>
+     <y>480</y>
     </hint>
     <hint type="destinationlabel">
-     <x>814</x>
-     <y>221</y>
+     <x>816</x>
+     <y>578</y>
     </hint>
    </hints>
   </connection>
   <connection>
-   <sender>_wFieldQuotingOtherValue</sender>
-   <signal>textChanged(QString)</signal>
+   <sender>_wSimplifyWhitespace</sender>
+   <signal>toggled(bool)</signal>
    <receiver>SpreadsheetCleaner</receiver>
-   <slot>make_field_quoting_other()</slot>
+   <slot>simplify_whitespace_toggled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>723</x>
-     <y>329</y>
+     <x>254</x>
+     <y>474</y>
     </hint>
     <hint type="destinationlabel">
      <x>815</x>
-     <y>342</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>_wFieldQuotingOutputOtherValue</sender>
-   <signal>textChanged(QString)</signal>
-   <receiver>SpreadsheetCleaner</receiver>
-   <slot>make_field_quoting_output_other()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>671</x>
-     <y>395</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>815</x>
-     <y>399</y>
+     <y>521</y>
     </hint>
    </hints>
   </connection>
@@ -724,5 +850,7 @@
   <slot>make_field_separator_output_other()</slot>
   <slot>make_field_quoting_other()</slot>
   <slot>make_field_quoting_output_other()</slot>
+  <slot>ignore_case_toggled(bool)</slot>
+  <slot>simplify_whitespace_toggled(bool)</slot>
  </slots>
 </ui>

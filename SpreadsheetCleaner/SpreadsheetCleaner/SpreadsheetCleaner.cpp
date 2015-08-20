@@ -11,12 +11,18 @@ SpreadsheetCleaner::SpreadsheetCleaner(QWidget *parent) :
     menu(new QMenu(this)),
     context_menu_action(menu->addAction(""))
 {
+    // set up UI
     ui->setupUi(this);
+    // set up table and connections
     ui->_wTable->setModel(&spread_sheet_model);
     ui->_wTable->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(ui->_wTable, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(contextMenu(QPoint)));
     connect(context_menu_action, SIGNAL(triggered(bool)), this, SLOT(toggle_column()));
+    connect(&spread_sheet_model, SIGNAL(info(QString)), this, SLOT(info(QString)));
+    // setup model parameters
     csv_encoding_changed();
+    ignore_case_toggled(ui->_wIgnoreCase->isChecked());
+    simplify_whitespace_toggled(ui->_wSimplifyWhitespace->isChecked());
 }
 
 SpreadsheetCleaner::~SpreadsheetCleaner() {
@@ -99,9 +105,9 @@ void SpreadsheetCleaner::csv_encoding_changed() {
             input_separator = QChar::Null;
         }
     }
-    spread_sheet_model.input_separator = input_separator;
+    spread_sheet_model.set_input_separator(input_separator);
     if(!ui->_wFieldSeparatorOutputGroup->isChecked()) {
-        spread_sheet_model.output_separator = input_separator;
+        spread_sheet_model.set_output_separator(input_separator);
     } else {
         QChar output_separator;
         if(ui->_wFieldSeparatorOutputComma->isChecked()) output_separator = ',';
@@ -115,7 +121,7 @@ void SpreadsheetCleaner::csv_encoding_changed() {
                 output_separator = QChar::Null;
             }
         }
-        spread_sheet_model.output_separator = output_separator;
+        spread_sheet_model.set_output_separator(output_separator);
     }
     QChar input_quote_char;
     if(ui->_wFieldQuotingDoubleQuotes->isChecked()) input_quote_char = '"';
@@ -129,9 +135,9 @@ void SpreadsheetCleaner::csv_encoding_changed() {
             input_quote_char = QChar::Null;
         }
     }
-    spread_sheet_model.input_quote_char = input_quote_char;
+    spread_sheet_model.set_input_quote_char(input_quote_char);
     if(!ui->_wFieldQuotingOutputGroup->isChecked()) {
-        spread_sheet_model.output_quote_char = input_quote_char;
+        spread_sheet_model.set_output_quote_char(input_quote_char);
     } else {
         QChar output_quote_char;
         if(ui->_wFieldQuotingOutputDoubleQuotes->isChecked()) output_quote_char = '"';
@@ -145,7 +151,7 @@ void SpreadsheetCleaner::csv_encoding_changed() {
                 output_quote_char = QChar::Null;
             }
         }
-        spread_sheet_model.output_quote_char = output_quote_char;
+        spread_sheet_model.set_output_quote_char(output_quote_char);
     }
 }
 
@@ -168,21 +174,28 @@ void SpreadsheetCleaner::make_field_quoting_output_other() {
 void SpreadsheetCleaner::contextMenu(QPoint pos) {
     QModelIndex index = ui->_wTable->indexAt(pos);
     if(index.isValid()) {
-        if(spread_sheet_model.columns_to_compare[index.column()]) {
+        if(spread_sheet_model.get_columns_to_compare(index.column())) {
             menu->actions()[0]->setText("ignore column");
         } else {
             menu->actions()[0]->setText("compare column");
         }
         toggle_column_index = index.column();
-        if(spread_sheet_model.duplicate_index[index.row()]>=0) {
-            menu->setTitle(QString("Is duplicate of row %1").arg(spread_sheet_model.duplicate_index[index.row()]));
-        } else {
-            menu->setTitle("");
-        }
         menu->popup(ui->_wTable->viewport()->mapToGlobal(pos));
     }
 }
 
 void SpreadsheetCleaner::toggle_column() {
     spread_sheet_model.toggle_column(toggle_column_index);
+}
+
+void SpreadsheetCleaner::ignore_case_toggled(bool value) {
+    spread_sheet_model.set_ignore_case(value);
+}
+
+void SpreadsheetCleaner::simplify_whitespace_toggled(bool value) {
+    spread_sheet_model.set_simplify_whitespace(value);
+}
+
+void SpreadsheetCleaner::info(QString info_text) {
+    ui->_wInfo->setText(info_text);
 }

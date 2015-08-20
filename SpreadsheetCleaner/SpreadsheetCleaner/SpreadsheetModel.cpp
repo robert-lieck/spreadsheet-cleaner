@@ -36,6 +36,14 @@ QVariant SpreadsheetModel::data(const QModelIndex &index, int role) const {
             return QBrush(QColor(230,230,255));
         }
         break;
+    case Qt::EditRole:
+        return sheet_data[row][col];
+        break;
+    case Qt::ToolTipRole:
+        if(rows_to_delete[row]) {
+            return QString("duplicate of %1").arg(duplicate_index[row]);
+        }
+        break;
     case Qt::TextAlignmentRole:
         break;
     case Qt::CheckStateRole:
@@ -67,6 +75,7 @@ bool SpreadsheetModel::setData(const QModelIndex & index, const QVariant & value
     switch(role) {
     case Qt::EditRole:
         sheet_data[index.row()][index.column()] = value.toString();
+        find_duplicates();
         break;
     case Qt::CheckStateRole:
         break;
@@ -82,6 +91,18 @@ void SpreadsheetModel::toggle_column(int column_index) {
     columns_to_compare[column_index] = !columns_to_compare[column_index];
     find_duplicates();
     emit dataChanged(createIndex(0,column_index),createIndex(sheet_data.size()-1,column_index));
+}
+
+bool SpreadsheetModel::equal(QString s1, QString s2) {
+    if(ignore_case) {
+        s1 = s1.toLower();
+        s2 = s2.toLower();
+    }
+    if(simplify_whitespace) {
+        s1 = s1.simplified();
+        s2 = s2.simplified();
+    }
+    return s1==s2;
 }
 
 void SpreadsheetModel::reset(QString file_name) {
@@ -247,22 +268,49 @@ void SpreadsheetModel::save(QString file_name) {
     }
 }
 
+void SpreadsheetModel::set_input_separator(QChar c) {input_separator = c;}
+
+void SpreadsheetModel::set_output_separator(QChar c) {output_separator = c;}
+
+void SpreadsheetModel::set_input_quote_char(QChar c) {input_quote_char = c;}
+
+void SpreadsheetModel::set_output_quote_char(QChar c) {output_quote_char = c;}
+
+void SpreadsheetModel::set_columns_to_compare(int idx, bool b) {
+    columns_to_compare[idx] = b;
+    find_duplicates();
+}
+
+bool SpreadsheetModel::get_columns_to_compare(int idx) {return columns_to_compare[idx];}
+
+void SpreadsheetModel::set_ignore_case(bool b) {
+    ignore_case = b;
+    find_duplicates();
+}
+
+void SpreadsheetModel::set_simplify_whitespace(bool b) {
+    simplify_whitespace = b;
+    find_duplicates();
+}
+
 bool SpreadsheetModel::end_of_row(QString line) {
     return line.size()==0 || line[0]=='\n' || line[0]=='\xa';
 }
 
 void SpreadsheetModel::find_duplicates() {
+    qDebug() << "find duplicates";
+    int number_of_duplicates = 0;
     for(int row_idx=0; row_idx<(int)sheet_data.size(); ++row_idx) {
 //        qDebug() << "checking row" << row_idx;
         bool found_duplicate = false;
         for(int other_row_idx=row_idx+1; other_row_idx<(int)sheet_data.size(); ++other_row_idx) {
 //            qDebug() << "comparing to row" << other_row_idx;
-            bool equal = true;
+            bool fields_are_equal = true;
             for(int col_idx=0; col_idx<(int)sheet_data[row_idx].size(); ++col_idx) {
                 if(columns_to_compare[col_idx]) {
 //                    qDebug() << "check column" << col_idx;
-                    if(sheet_data[row_idx][col_idx]!=sheet_data[other_row_idx][col_idx]) {
-                        equal = false;
+                    if(!equal(sheet_data[row_idx][col_idx],sheet_data[other_row_idx][col_idx])) {
+                        fields_are_equal = false;
 //                        qDebug() << "NOT equal";
                         break;
                     } else {
@@ -270,9 +318,10 @@ void SpreadsheetModel::find_duplicates() {
                     }
                 }
             }
-            if(equal) {
+            if(fields_are_equal) {
 //                qDebug() << row_idx << "is duplicate of" << other_row_idx;
                 found_duplicate = true;
+                ++number_of_duplicates;
                 duplicate_index[row_idx] = other_row_idx;
                 break;
             }
@@ -283,4 +332,5 @@ void SpreadsheetModel::find_duplicates() {
                 emit dataChanged(createIndex(row_idx,0),createIndex(row_idx,sheet_data[row_idx].size()-1));
         }
     }
+    emit info(QString("%1 duplicates in %2 rows").arg(number_of_duplicates).arg(sheet_data.size()));
 }
