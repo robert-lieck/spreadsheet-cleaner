@@ -29,52 +29,121 @@
          <layout class="QGridLayout" name="gridLayout_4">
           <item row="0" column="0">
            <layout class="QGridLayout" name="gridLayout_3">
-            <item row="2" column="1">
+            <item row="6" column="1">
              <widget class="QLineEdit" name="_wOpenFileName"/>
             </item>
             <item row="0" column="0" colspan="3">
              <widget class="QTableView" name="_wTable"/>
             </item>
-            <item row="2" column="0">
+            <item row="6" column="0">
              <widget class="QPushButton" name="_wOpenFile">
               <property name="text">
                <string>Open</string>
               </property>
              </widget>
             </item>
-            <item row="2" column="2">
+            <item row="6" column="2">
              <widget class="QPushButton" name="_wBrowseOpenFile">
               <property name="text">
                <string>Browse...</string>
               </property>
              </widget>
             </item>
-            <item row="3" column="0">
+            <item row="7" column="0">
              <widget class="QPushButton" name="_wSaveFile">
               <property name="text">
                <string>Save</string>
               </property>
              </widget>
             </item>
-            <item row="3" column="2">
+            <item row="7" column="1">
+             <widget class="QLineEdit" name="_wSaveFileName"/>
+            </item>
+            <item row="7" column="2">
              <widget class="QPushButton" name="_wBrowseSaveFile">
               <property name="text">
                <string>Browse...</string>
               </property>
              </widget>
             </item>
-            <item row="3" column="1">
-             <widget class="QLineEdit" name="_wSaveFileName"/>
+            <item row="3" column="0" colspan="3">
+             <layout class="QGridLayout" name="gridLayout_9"/>
             </item>
-            <item row="1" column="0" colspan="3">
-             <widget class="QLabel" name="_wInfo">
-              <property name="text">
-               <string/>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-              </property>
-             </widget>
+            <item row="4" column="0" colspan="3">
+             <layout class="QHBoxLayout" name="horizontalLayout_6">
+              <item>
+               <spacer name="horizontalSpacer_7">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QLabel" name="_wInfo">
+                <property name="text">
+                 <string>--</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QCheckBox" name="_wShowStatistics">
+                <property name="text">
+                 <string>show statistics</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item row="5" column="0" colspan="3">
+             <layout class="QHBoxLayout" name="horizontalLayout_5">
+              <item>
+               <spacer name="horizontalSpacer_6">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QTableWidget" name="_wStatisticsTable">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>475</width>
+                  <height>125</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>475</width>
+                  <height>125</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+             </layout>
             </item>
            </layout>
           </item>
@@ -836,6 +905,22 @@
     <hint type="destinationlabel">
      <x>815</x>
      <y>521</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>_wShowStatistics</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>_wStatisticsTable</receiver>
+   <slot>setVisible(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>747</x>
+     <y>324</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>747</x>
+     <y>445</y>
     </hint>
    </hints>
   </connection>

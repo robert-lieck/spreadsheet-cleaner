@@ -8,17 +8,59 @@ SpreadsheetCleaner::SpreadsheetCleaner(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::SpreadsheetCleaner),
     spread_sheet_model(this),
-    menu(new QMenu(this)),
-    context_menu_action(menu->addAction(""))
+    menu(new QMenu(this))
 {
     // set up UI
     ui->setupUi(this);
+    // set up context menu
+    compare_column_action = menu->addAction("compare column");
+    ignore_column_action = menu->addAction("ignore column");
+    menu->addSeparator();
+    always_delete_row_action = menu->addAction("always delete row");
+    never_delete_row_action = menu->addAction("never delete row");
+    unblock_row_action = menu->addAction("unblock row");
+    connect(compare_column_action, SIGNAL(triggered()), this, SLOT(set_compare_column_action()));
+    connect(ignore_column_action, SIGNAL(triggered()), this, SLOT(set_ignore_column_action()));
+    connect(always_delete_row_action, SIGNAL(triggered()), this, SLOT(set_always_delete_row_action()));
+    connect(never_delete_row_action, SIGNAL(triggered()), this, SLOT(set_never_delete_row_action()));
+    connect(unblock_row_action, SIGNAL(triggered()), this, SLOT(set_unblock_row_action()));
     // set up table and connections
     ui->_wTable->setModel(&spread_sheet_model);
     ui->_wTable->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(ui->_wTable, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(contextMenu(QPoint)));
-    connect(context_menu_action, SIGNAL(triggered(bool)), this, SLOT(toggle_column()));
-    connect(&spread_sheet_model, SIGNAL(info(QString)), this, SLOT(info(QString)));
+    // set up statistics table
+    ui->_wShowStatistics->setChecked(false); // don't show initially
+    ui->_wStatisticsTable->setRowCount(3);
+    ui->_wStatisticsTable->setColumnCount(4);
+    ui->_wStatisticsTable->setHorizontalHeaderLabels({"unblocked","always delete","never delete",""});
+    ui->_wStatisticsTable->setVerticalHeaderLabels({"duplicate","unique",""});
+//    ui->_wStatisticsTable->resizeColumnsToContents();
+    ui->_wStatisticsTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->_wStatisticsTable->setSelectionMode(QAbstractItemView::NoSelection);
+    ui->_wStatisticsTable->setSelectionBehavior(QAbstractItemView::SelectItems);
+    for(int row=0; row<3; ++row) for(int col=0; col<4; ++col) {
+        QTableWidgetItem * item = new QTableWidgetItem("0");
+        item->setTextAlignment(Qt::AlignCenter);
+        if(row==0 && col==0) {
+            item->setBackgroundColor(spread_sheet_model.unblocked_duplicate_color);
+        } else if(row==0 && col==1) {
+            item->setBackgroundColor(spread_sheet_model.always_delete_duplicate_color);
+        } else if(row==0 && col==2) {
+            item->setBackgroundColor(spread_sheet_model.never_delete_duplicate_color);
+        } else if(row==1 && col==0) {
+            item->setBackgroundColor(spread_sheet_model.unblocked_unique_color);
+        } else if(row==1 && col==1) {
+            item->setBackgroundColor(spread_sheet_model.always_delete_unique_color);
+        } else if(row==1 && col==2) {
+            item->setBackgroundColor(spread_sheet_model.never_delete_unique_color);
+        } else {
+            item->setBackgroundColor(QColor(240,240,240));
+        }
+        ui->_wStatisticsTable->setItem(row,col,item);
+    }
+    // set up info string
+    connect(&spread_sheet_model, SIGNAL(info(QString,std::array<std::array<int,4>,3>)),
+            this, SLOT(info(QString,std::array<std::array<int,4>,3>)));
     // setup model parameters
     csv_encoding_changed();
     ignore_case_toggled(ui->_wIgnoreCase->isChecked());
@@ -174,18 +216,30 @@ void SpreadsheetCleaner::make_field_quoting_output_other() {
 void SpreadsheetCleaner::contextMenu(QPoint pos) {
     QModelIndex index = ui->_wTable->indexAt(pos);
     if(index.isValid()) {
-        if(spread_sheet_model.get_columns_to_compare(index.column())) {
-            menu->actions()[0]->setText("ignore column");
-        } else {
-            menu->actions()[0]->setText("compare column");
-        }
-        toggle_column_index = index.column();
+        context_menu_row_index = index.row();
+        context_menu_column_index = index.column();
         menu->popup(ui->_wTable->viewport()->mapToGlobal(pos));
     }
 }
 
-void SpreadsheetCleaner::toggle_column() {
-    spread_sheet_model.toggle_column(toggle_column_index);
+void SpreadsheetCleaner::set_compare_column_action() {
+    spread_sheet_model.set_columns_compare_status(context_menu_column_index,true);
+}
+
+void SpreadsheetCleaner::set_ignore_column_action() {
+    spread_sheet_model.set_columns_compare_status(context_menu_column_index,false);
+}
+
+void SpreadsheetCleaner::set_always_delete_row_action() {
+    spread_sheet_model.set_row_blocking_status(context_menu_row_index,SpreadsheetModel::ALWAYS_DELETE);
+}
+
+void SpreadsheetCleaner::set_never_delete_row_action() {
+    spread_sheet_model.set_row_blocking_status(context_menu_row_index,SpreadsheetModel::NEVER_DELETE);
+}
+
+void SpreadsheetCleaner::set_unblock_row_action() {
+    spread_sheet_model.set_row_blocking_status(context_menu_row_index,SpreadsheetModel::UNBLOCKED);
 }
 
 void SpreadsheetCleaner::ignore_case_toggled(bool value) {
@@ -196,6 +250,9 @@ void SpreadsheetCleaner::simplify_whitespace_toggled(bool value) {
     spread_sheet_model.set_simplify_whitespace(value);
 }
 
-void SpreadsheetCleaner::info(QString info_text) {
+void SpreadsheetCleaner::info(QString info_text, std::array<std::array<int,4>,3> stats) {
     ui->_wInfo->setText(info_text);
+    for(int row=0; row<3; ++row) for(int col=0; col<4; ++col) {
+        ui->_wStatisticsTable->item(row,col)->setText(QString::number(stats[row][col]));
+    }
 }
